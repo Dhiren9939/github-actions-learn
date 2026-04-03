@@ -1,0 +1,11 @@
+name: Push Action
+
+on:
+    push:
+        paths: "include/*.txt"
+    
+jobs:
+    say:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: "Run on changes to include only."
