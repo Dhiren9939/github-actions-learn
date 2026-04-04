@@ -6,6 +6,8 @@ on:
 jobs:
     producer:
         runs-on: ubuntu-24.04
+        outputs:
+            data1: ${{ steps.create-vars.outputs.data1 }}
         steps:
             - name: Create Variables
               id: create-vars
