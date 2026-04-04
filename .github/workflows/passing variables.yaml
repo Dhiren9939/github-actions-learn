@@ -25,4 +25,4 @@ jobs:
         steps:
             - run: |
                   echo "GITHUB_ENV DATA1: ${DATA1:-<UNSET>}"
-                  echo "GITHUB_OUTPUT DATA1: ${{needs.producer.outputs.data1}}"
+                  echo "GITHUB_OUTPUT DATA1: ${{needs.producer.outputs.data1}}:-"
