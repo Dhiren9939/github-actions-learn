@@ -2,7 +2,8 @@ name: Push Action
 
 on:
     push:
-        paths: "include/*"
+        paths: 
+            - "include/*"
     
 jobs:
     say:

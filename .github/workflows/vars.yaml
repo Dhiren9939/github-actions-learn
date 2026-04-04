@@ -1,0 +1,30 @@
+name: env Variables
+
+on:
+    workflow_dispatch:
+env:
+    WORKFLOW_VAR: "TOP VAR"
+
+jobs:
+    job-1:
+        runs-on: ubuntu-24.04
+        env:
+            JOB_VAR: "SECOND VAR"
+        steps:
+            - env:
+                  STEP_VAR: "THRID VAR"
+              run: |
+                  echo ${WORKFLOW_VAR:-<UNSET>}
+                  echo ${JOB_VAR:-<UNSET>}
+                  echo ${STEP_VAR:-<UNSET>}
+            - run: |
+                  echo ${WORKFLOW_VAR:-<UNSET>}
+                  echo ${JOB_VAR:-<UNSET>}
+                  echo ${STEP_VAR:-<UNSET>}
+    job-2:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: |
+                  echo ${WORKFLOW_VAR:-<UNSET>}
+                        echo ${JOB_VAR:-<UNSET>}
+                        echo ${STEP_VAR:-<UNSET>}
