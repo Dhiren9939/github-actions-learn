@@ -1,0 +1,26 @@
+name: Passing Variables
+
+on:
+    workflow_dispatch:
+
+jobs:
+    producer:
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Create Variables
+              id: create-vars
+              run: |
+                  echo "DATA1=THIS" >> "$GITHUB_ENV"
+                  echo "DATA1=THIS" >> "$GITHUB_OUTPUT"
+            - name: Inspect Variables
+              run: |
+                  echo "GITHUB_ENV DATA1: ${DATA1:-<UNSET>}"
+                  echo "GITHUB_OUTPUT DATA1: ${{steps.create-vars.outputs.data1}}"
+
+    consumer:
+        runs-on: ubuntu-24.04
+        needs: producer
+        steps:
+            - run: |
+                  echo "GITHUB_ENV DATA1: ${DATA1:-<UNSET>}"
+                  echo "GITHUB_OUTPUT DATA1: ${{needs.producer.outputs.data1}}"
